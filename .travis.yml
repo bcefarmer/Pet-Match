@@ -4,6 +4,7 @@ branches:
   only:
     - master
     - main
+    - development
 cache:
   directories:
     - node_modules

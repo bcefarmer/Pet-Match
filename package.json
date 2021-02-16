@@ -13,10 +13,19 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-    "express-session": "^1.16.1",
+    "express-session": "^1.17.1",
     "mysql2": "^1.7.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^5.8.6"
-  }
+    "sequelize": "^5.22.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nard1n/Pet-Match.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nard1n/Pet-Match/issues"
+  },
+  "homepage": "https://github.com/nard1n/Pet-Match#readme"
 }

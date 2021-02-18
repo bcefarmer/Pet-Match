@@ -1,4 +1,40 @@
-form.signup,
-form.login {
-  margin-top: 50px;
+* {
+  font-family: 'Abril Fatface', cursive;
+}
+.flogin {
+  background-color: #f8aa6a;
+}
+
+#btn1 {
+  margin-top: 25px;
+  margin-right: 50px;
+  font-size: 25px;
+  padding: 5px 50px 5px 50px;
+  background-color: black;
+  border: black;
+}
+
+.mantra {
+  margin-top: 300px;
+}
+
+h6 {
+  font-size: 45px;
+  line-height: 70px;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 50px;
+  
+}
+
+.colorB {
+  background-color: black;
+  margin-top: 5px;
+}
+
+#photoF {
+  /* float: inline-end; */
+  height: 750px;
+  width: 750px;
+  position: static
 }

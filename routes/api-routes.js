@@ -66,16 +66,29 @@ module.exports = function(app) {
         
         db.pets.findAll({}).then(
             function(response){
-            //console.log(JSON.stringify(response));
-         
             
-            
+                let myArray = [];  
+                response.map((current_item,index) => {
+                let createPartial =  {
+                "type": response[index].type, 
+                "gender": response[index].gender 
+                }
+
+                myArray.push(createPartial);
+                console.log(`partial = ${createPartial}`)
+            }
+
+            )
+          
+
+            console.log(`array is ${myArray}`);
+
             const hbsObject = {
-            pets: response,
+            pets: myArray
            
             }
             
-            console.log(`hbs object listed as ${hbsObject}`);
+           // console.log(`hbs object listed as ${JSON.stringify(hbsObject.pets)}`);
             res.render("members", hbsObject);
             
             }

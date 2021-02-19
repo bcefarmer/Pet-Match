@@ -4,11 +4,17 @@ $('document').ready(function() {
 
   $(".creatureBullet").on("click", async function (event) {
       event.preventDefault();
-      const petListItem = event.target;
+      
+      const petListItem = $(event.target).closest("li");
+      console.log(petListItem);
+      const animalType = $(event.target).closest("li").data("type");
+      const animalGender = $(event.target).closest("li").data("gender");
 
-      const animalType = $("petListItem").attr("data-type").trim();
-      const animalGender = $("petListItem").attr("data-gender").trim();
-      console.log(`animalType = ${animalType} & animalGender = ${animalType}`);
+
+
+      //const animalType = $("petListItem").data('type');
+      //const animalGender = $("petListItem").data('gender');
+      console.log(`animalType = ${animalType} & animalGender = ${animalGender}`);
 
 
         const rawData = await authorization(animalType);
@@ -54,7 +60,7 @@ const authorization = (animalType, animalGender) =>{
       )
       .then(function(data){
         console.log('token', data);
-        return fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&gender=${animalGender}&page=3`, {
+        return fetch(`https://api.petfinder.com/v2/animals?types/${animalType}/gender/${animalGender}&page=3`, {
                       method: 'GET',
                       headers: {
                       "Authorization": `${data.token_type} ${data.access_token}`,

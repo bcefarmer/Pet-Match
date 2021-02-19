@@ -14,7 +14,9 @@ module.exports = function(app) {
     // res.sendFile(path.join(__dirname, "../views/layouts/main"));
 
     if(req.user) {
-      res.redirect("/members");
+      console.log("Is authorized user")
+     // res.redirect("/members")
+     // res.render('members');
     } else {
       res.render('index');
     }
@@ -23,7 +25,10 @@ module.exports = function(app) {
 
   app.get("/signup", function(req, res) {
     if(req.user) {
-      res.redirect("/members");
+        console.log("Is registered user.")
+      // res.redirect("/members");
+      
+     //res.render("members", hbsObject);
     } else {
       res.render("signup");
     }
@@ -41,7 +46,12 @@ module.exports = function(app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
+ 
+  /*
   app.get("/members", isAuthenticated, function(req, res) {
+    console.log("user authenticated html-routes.js....app.get, isAuthenticated")
     res.render("members");
   });
-};
+ */ 
+
+}

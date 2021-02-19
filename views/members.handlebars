@@ -14,3 +14,51 @@
       </div>
     </div>
   </div>
+  <div class="container-fluid">
+
+<!--User selects criteria-->
+<!--NOTE: FORM WILL BE REMOVED WHEN DB IS FUNCTIONAL-->
+<form>
+    
+
+    <div class="form-group"> 
+        <label for="animalType">Dog Types</label>
+        <select class="form-select" id="animalType">
+            <option selected>Choose...</option>
+            <option value="Cat">Cat</option>
+            <option value="Dog">Dog</option>
+        </select>
+    </div>
+
+
+  <button type="submit" class="btn btn-primary" id="animalFind">Find Your Animal!</button>
+</form>
+
+
+
+<!-- This section contains dog records -->
+
+        <div id="list-container">
+
+            <div class="col-12">
+
+        <!--Breed list START-->
+            <ul id="breedList">
+            
+
+            </ul>
+  
+            </div>
+
+        </div>
+
+  <ul>
+    {{#each pets}}   
+                    
+          {{>pets/pets-block}}
+                    
+    {{/each}}
+</ul>
+
+    </div> <!--Container fluid ending-->
+    <script type="text/javascript" src="/js/petFinder_actions.js"></script>

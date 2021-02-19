@@ -1,17 +1,15 @@
-$( document ).ready(function() {
+$('document').ready(function() {
 
   console.log(`Loading /members`),
 
-  $("#animalFind").on("click", async function (event) {
+  $(".creatureBullet").on("click", async function (event) {
       event.preventDefault();
+      const petListItem = event.target;
 
-      const animalType = $("#animalType").val();
-      console.log(`animalType = ${animalType}`);
+      const animalType = $("petListItem").attr("data-type").trim();
+      const animalGender = $("petListItem").attr("data-gender").trim();
+      console.log(`animalType = ${animalType} & animalGender = ${animalType}`);
 
-        if (animalType === "" || animalType ===null || animalType === "Choose...") {
-        alert("You must select a type of animal from the dropdown.");
-        return;
-        }
 
         const rawData = await authorization(animalType);
 
@@ -20,14 +18,6 @@ $( document ).ready(function() {
 })
  
 });
-
-
-
-
-
-
-
-
 
 
 /*
@@ -42,7 +32,7 @@ $( document ).ready(function() {
 //-----------------------------------------------------------------------
 
 
-const authorization = (animalType) =>{
+const authorization = (animalType, animalGender) =>{
   
     let api_key = "q0QpMcscGQuY1S3pI9OXYHzJW8OkMOX27dgtB9OslNJYB1Dkgi";
     let client_secret = "ZVYktHRXWvV5zQm4X6TJHnwody4JqFiBikXWJNh3";
@@ -64,7 +54,7 @@ const authorization = (animalType) =>{
       )
       .then(function(data){
         console.log('token', data);
-        return fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&page=3`, {
+        return fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&gender=${animalGender}&page=3`, {
                       method: 'GET',
                       headers: {
                       "Authorization": `${data.token_type} ${data.access_token}`,
@@ -87,8 +77,6 @@ const authorization = (animalType) =>{
   }
   
   
-  
-    
   
   /*
   //---------------------------------------------------------------------

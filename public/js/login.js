@@ -1,12 +1,13 @@
 $(document).ready(function() {
   // Getting references to our form and inputs
   var loginForm = $("form.login");
-  var loginBtn =  $("#loginButton")
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
 
+
+
   // When the form is submitted, we validate there's an email and password entered
-  loginBtn.on("click", function(e) {
+  loginForm.on("submit", function(e) {
     e.preventDefault();
     var userData = {
       email: emailInput.val().trim(),
@@ -25,35 +26,36 @@ $(document).ready(function() {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(email, password) {
-    const rawData =  {
-    email: email,
-    password: password,
-    },
-
-    const data = JSON.stringify(rawData);
-
-    fetch("/api/login", {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json'
-         }, 
-      
-      body: data
-        })
-      
-    
-    
-    
     /*$.post("/api/login", {
       email: email,
-      password: password
-    })*/
-      .then(function() {
-        window.location.replace("/members");
-        // If there's an error, log the error
+      password: password*/
+
+      let rawBody = {
+        email: email,
+        password: password
+      };
+
+      let requestBody = JSON.stringify(rawBody);
+
+      fetch('/api/login',
+      {
+        method: 'POST',
+        headers:{
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: requestBody
       })
-      .catch(function(err) {
-        console.log(err);
-      });
-  }
-});
+    /*
+      .then(
+           location.replace("/members")
+      )}})
+      */
+     .then(
+     
+        location.replace("/members") 
+       
+       
+       
+      )}})
+        

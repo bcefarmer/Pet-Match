@@ -1,6 +1,8 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+// const isAuthenticated = require("../config/middleware/isAuthenticated");
+
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -8,20 +10,28 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
-  });
+  }); 
+
+  
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", function(req, res) {
-    db.User.create({
-      email: req.body.email,
-      password: req.body.password
+    
+    const userEmail = req.body.email;
+    const userPW = req.body.password;
+   
+    /* db.User.create({ */
+      db.User.create({
+       email:  userEmail,
+       password: userPW
     })
       .then(function() {
         res.redirect(307, "/api/login");
       })
       .catch(function(err) {
+        console.log(`Database signup err`)
         res.status(401).json(err);
       });
   });
@@ -46,4 +56,34 @@ module.exports = function(app) {
       });
     }
   });
-};
+ // MY ADDITION - PULL DB RECORDS ------------------------
+  app.get("/members", (req,res) => {
+     
+       
+       
+
+        console.log(`Starting script to pull existing pet records.`);
+        
+        db.pets.findAll({}).then(
+            function(response){
+            //console.log(JSON.stringify(response));
+         
+            
+            
+            const hbsObject = {
+            pets: response,
+           
+            }
+            
+            console.log(`hbs object listed as ${hbsObject}`);
+            res.render("members", hbsObject);
+            
+            }
+            )
+              .catch(err => console.log("The following error occurred in FindAll" + err))
+
+  }
+  
+  )
+   // MY ADDITION - END ------------------------
+}

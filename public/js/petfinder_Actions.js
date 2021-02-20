@@ -7,17 +7,22 @@ $('document').ready(function() {
       
       const petListItem = $(event.target).closest("li");
       console.log(petListItem);
+
+      /*
       const animalType = $(event.target).closest("li").data("type");
       const animalGender = $(event.target).closest("li").data("gender");
+      */
 
 
 
-      //const animalType = $("petListItem").data('type');
-      //const animalGender = $("petListItem").data('gender');
+
+      const animalType = petListItem[0].dataset.type;
+      const animalGender = petListItem[0].dataset.gender;
+
       console.log(`animalType = ${animalType} & animalGender = ${animalGender}`);
 
 
-        const rawData = await authorization(animalType);
+        const rawData = await authorization(animalType, animalGender);
 
          parseAnimals(rawData);
   
@@ -50,11 +55,13 @@ const authorization = (animalType, animalGender) =>{
       method: 'POST',
       body: stringBody,
       headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin': '*'
       }
       })
       .then(
         function(data){
+          console.log(`Token Data: ${data}`)
           return data.json();
         }
       )

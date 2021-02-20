@@ -1,5 +1,15 @@
+<style>
+
+  *{
+    background-color: white;
+  }
+  .flogin{
+    background-color: white;
+  }
+</style>
+
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <div class="container-fluid" style="background-color: white;">
     <div class="navbar-header">
       <a class="navbar-brand" href="/logout">
         Logout
@@ -7,7 +17,7 @@
     </div>
   </div>
 </nav>
-  <div class="container">
+  <div class="container" style="background-color: white;">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h2>Welcome <span class="member-name"></span></h2>
@@ -15,7 +25,7 @@
     </div>
   </div>
   <div class="container-fluid">
-<ul class="list-group" style="list-style-type: none;">
+<ul class="list-group">
     {{#each pets}}   
                     
           {{>pets/pets-block}}
@@ -31,7 +41,8 @@
 
 <!-- This section contains dog records -->
 
-        <div id="list-container">
+        <div class="container" style="box-sizing:border-box; position: relative; background: white;
+            padding: 50px 0 40px 0; display: block">
 
             <div class="col-12">
 

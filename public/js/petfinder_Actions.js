@@ -50,7 +50,7 @@ const authorization = (animalType, animalGender) =>{
       body: stringBody,
       headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin': '*'
+                
       }
       })
       .then(
@@ -135,8 +135,19 @@ const authorization = (animalType, animalGender) =>{
   
         function makeBody(creatureArray){
   
-            const myList = document.querySelector("#breedList")
+            const myList = document.querySelector("#breedList");
+            myList.style.listStyleType="none";
             myList.innerHTML="";
+
+            const rowWrapper = document.createElement("div");
+            rowWrapper.setAttribute("class","row");
+            rowWrapper.style.marginBottom = "30px";
+            rowWrapper.style.boxSizing = "border-box";
+            rowWrapper.style.marginLeft = "-15px";
+            rowWrapper.style.marginRight = "15px";
+
+            myList.append(rowWrapper);
+            
             for( var i = 0; i < creatureArray.length; i++ ) {
   
              var pinkNotes = 
@@ -153,34 +164,53 @@ const authorization = (animalType, animalGender) =>{
              }
               
               // Outer Div
-  
+              
               var list_div = document.createElement("li");
+              list_div.style.height="200px";
               list_div.setAttribute('data-id',creatureArray[i].id);
-              list_div.setAttribute("class", "class-lg-3")
-              list_div.setAttribute("class","animalListItem");
+              
+              list_div.setAttribute("class","animalListItem col-lg-3");
               // list_div.innerHTML=notes;
    
   
   
               // Image Div
               var imageDiv = document.createElement("div");
-                  imageDiv.setAttribute("class","img-container")
+                  imageDiv.setAttribute("class","img-container");
+                  imageDiv.style.boxSizing="border-box";
+                  imageDiv.style.backgroundColor="white";
+                  imageDiv.style.display="block";
+                  imageDiv.style.textAlign="center";
+                  imageDiv.style.height="50px";
+                  imageDiv.style.width="50px";
+
           
               // Actual animal image.
               var creatureImage = document.createElement('img');
                  creatureImage.setAttribute("src", creatureArray[i].photo );
+                 creatureImage.style.maxHeight = "100%"
+                 creatureImage.style.maxWidth="100%"
+                 creatureImage.style.listStyleType="none";
   
               imageDiv.appendChild(creatureImage);
   
               list_div.appendChild(imageDiv);
   
-              myList.appendChild(list_div);
+              rowWrapper.appendChild(list_div);
   
               var pinkBox = document.createElement("div");
               pinkBox.setAttribute("class", "box-bottom");
               pinkBox.innerHTML =
-              `${pinkNotes.Name.toUpperCase()} <br>
-              ${pinkNotes.Breed}`;
+                `${pinkNotes.Name.toUpperCase()} <br>
+                  ${pinkNotes.Breed}`;
+
+              pinkBox.style.backgroundColor="#E792B5";
+              pinkBox.style.padding = "padding: 20px 0";
+              pinkBox.style.textAlign = "center";
+              pinkBox.style.display = "block";
+            
+            
+            
   
               list_div.appendChild(pinkBox);
                 

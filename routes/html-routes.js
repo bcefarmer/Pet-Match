@@ -3,6 +3,8 @@ var path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+const db = require("../models");
+const passport = require("../config/passport");
 
 module.exports = function(app) {
   
@@ -49,9 +51,45 @@ module.exports = function(app) {
  
  
   app.get("/members", isAuthenticated, function(req, res) {
-    console.log("user authenticated html-routes.js....app.get, isAuthenticated")
-    res.render("members");
-  });
+    console.log("user authenticated html-routes.js....app.get, isAuthenticated");
+
+    db.pets.findAll({}).then(
+      function(response){
+      
+          let myArray = [];  
+          response.map((current_item,index) => {
+          let createPartial =  {
+          "type": response[index].type, 
+          "gender": response[index].gender 
+          }
+
+          myArray.push(createPartial);
+          console.log(`partial = ${createPartial}`)
+      }
+
+      )
+    
+
+      console.log(`array is ${myArray}`);
+
+      const hbsObject = {
+      pets: myArray
+     
+      }
+      
+     // console.log(`hbs object listed as ${JSON.stringify(hbsObject.pets)}`);
+      res.render("members", hbsObject);
+      
+      }
+      )
+        .catch(err => console.log("The following error occurred in FindAll" + err))
+    // res.render("members");
+
+    // --------------------------
+
+})
+
+    
 
 
 }

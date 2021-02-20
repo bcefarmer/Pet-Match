@@ -57,13 +57,14 @@ module.exports = function(app) {
     }
   });
  // MY ADDITION - PULL DB RECORDS ------------------------
-  app.get("/members", (req,res) => {
+ 
+ // app.get("/members", (req,res) => {
      
        
        
 
-        console.log(`Starting script to pull existing pet records.`);
-        
+       // console.log(`Starting script to pull existing pet records.`);
+        /*
         db.pets.findAll({}).then(
             function(response){
             
@@ -94,9 +95,9 @@ module.exports = function(app) {
             }
             )
               .catch(err => console.log("The following error occurred in FindAll" + err))
-
-  }
+*/
+ // }
   
-  )
-   // MY ADDITION - END ------------------------
+  //)
+   // MY ADDITION - END ------------------------*/
 }

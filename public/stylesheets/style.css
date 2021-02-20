@@ -24,7 +24,9 @@ html, body {
   color: #1E3643;
   background-color: #8A7961;
   border-radius: 20px;
+  padding: 3rem;
 }
+
 #btn1 {
   font-size: 25px;
   padding: 5px 60px 5px 60px;
@@ -52,6 +54,7 @@ h6 {
   width: 75%;
   padding-bottom: 2rem;
 }
+
 .right {
   position: absolute;
   top: 75%;
@@ -64,4 +67,8 @@ h6 {
   padding-top: 2rem;
   right: 10%;
   width: 25%;
+}
+
+li {
+  list-style-type: none;
 }

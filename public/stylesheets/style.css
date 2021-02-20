@@ -1,19 +1,30 @@
 * {
   font-family: 'Abril Fatface', cursive;
+  color: #F3F3F2;
 }
 
 html, body {
   height: 100%;
 }
 
+.square {
+  background-color: #2C2C2F;
+  padding: 3rem 3rem 2.5rem 3rem;
+  border-radius: 20px;
+}
 .container-fluid {
   height: 100%;
 }
 
 .flogin {
-  background-color: #f0bd80;
+  background-color: #909793;
 }
 
+.notesbox {
+  color: #1E3643;
+  background-color: #8A7961;
+  border-radius: 20px;
+}
 #btn1 {
   font-size: 25px;
   padding: 5px 60px 5px 60px;

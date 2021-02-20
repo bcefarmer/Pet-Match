@@ -8,26 +8,20 @@ $('document').ready(function() {
       const petListItem = $(event.target).closest("li");
       console.log(petListItem);
 
-      /*
-      const animalType = $(event.target).closest("li").data("type");
-      const animalGender = $(event.target).closest("li").data("gender");
-      */
-
-
-
-
       const animalType = petListItem[0].dataset.type;
       const animalGender = petListItem[0].dataset.gender;
 
       console.log(`animalType = ${animalType} & animalGender = ${animalGender}`);
 
 
-        const rawData = await authorization(animalType, animalGender);
+      const rawData = await authorization(animalType, animalGender);
 
-         parseAnimals(rawData);
+      parseAnimals(rawData);
   
 })
- 
+$.get("/api/user_data").then(function(data) {
+  $(".member-name").text(data.email);
+});
 });
 
 

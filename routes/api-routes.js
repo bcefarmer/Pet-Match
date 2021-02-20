@@ -1,8 +1,15 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-// const isAuthenticated = require("../config/middleware/isAuthenticated");
 
+const getList = (dataList) => {
+  return dataList.split(';');
+}
+
+const setList = (newData, dataList) => {
+  dataList.push(newData)
+  return dataList.join(';')
+}
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -10,28 +17,20 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
-  }); 
-
-  
+  });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", function(req, res) {
-    
-    const userEmail = req.body.email;
-    const userPW = req.body.password;
-   
-    /* db.User.create({ */
-      db.User.create({
-       email:  userEmail,
-       password: userPW
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password
     })
       .then(function() {
         res.redirect(307, "/api/login");
-      })
+      }) 
       .catch(function(err) {
-        console.log(`Database signup err`)
         res.status(401).json(err);
       });
   });
@@ -42,62 +41,36 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
+  app.post('/api/saveList', async (req, res) => {
+    const user = await db.User.findByPk(req.user.id);
+    console.log(user.email); 
+
+    let currentList = getList(user.list);
+
+    let updatedList = setList(req.body.note, currentList);
+
+    user.list = updatedList;
+
+    await user.save();
+    res.send("List update successful!!");
+  });
+
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function(req, res) {
+  app.get("/api/user_data", async function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
+      const user = await db.User.findByPk(req.user.id);
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
+        list: getList(user.list).filter((note, index) => {
+          return (index != 0)
+        })
       });
     }
   });
- // MY ADDITION - PULL DB RECORDS ------------------------
- 
- // app.get("/members", (req,res) => {
-     
-       
-       
-
-       // console.log(`Starting script to pull existing pet records.`);
-        /*
-        db.pets.findAll({}).then(
-            function(response){
-            
-                let myArray = [];  
-                response.map((current_item,index) => {
-                let createPartial =  {
-                "type": response[index].type, 
-                "gender": response[index].gender 
-                }
-
-                myArray.push(createPartial);
-                console.log(`partial = ${createPartial}`)
-            }
-
-            )
-          
-
-            console.log(`array is ${myArray}`);
-
-            const hbsObject = {
-            pets: myArray
-           
-            }
-            
-           // console.log(`hbs object listed as ${JSON.stringify(hbsObject.pets)}`);
-            res.render("members", hbsObject);
-            
-            }
-            )
-              .catch(err => console.log("The following error occurred in FindAll" + err))
-*/
- // }
-  
-  //)
-   // MY ADDITION - END ------------------------*/
-}
+};

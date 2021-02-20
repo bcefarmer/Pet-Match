@@ -11,7 +11,7 @@ html, body {
 }
 
 .flogin {
-  background-color: #f8aa6a;
+  background-color: #f0bd80;
 }
 
 #btn1 {
@@ -37,12 +37,20 @@ h6 {
 }
 
 #photoF {
-  height: 1000px;
-  width: 1000px;
+  padding-left:2rem;
+  width: 75%;
+  padding-bottom: 2rem;
 }
 .right {
   position: absolute;
-  top: 50%;
+  top: 75%;
+  right: 10%;
+  width: 50%;
+}
+
+.right-up {
+  position: absolute;
+  padding-top: 2rem;
   right: 10%;
   width: 25%;
 }

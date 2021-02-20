@@ -106,3 +106,5 @@ dist
 
 # MacOS custom attributes file
 .DS_Store
+
+node_modules

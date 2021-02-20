@@ -10,7 +10,7 @@ replacing password with your local host password.
 
 ## Usage
 
-tbd.
+tbd
 
 [Deployed Website]() --link for our webpage
 ## Mock up 

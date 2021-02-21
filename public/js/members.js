@@ -10,8 +10,6 @@ $(document).ready(function() {
   
       data.list.forEach(note => {
         const noteLi = $("<li>").text(note);
-        
-
   
         $("#currentList").append(noteLi);
       });
@@ -33,3 +31,5 @@ $(document).ready(function() {
   loadPage();
 
 });
+
+                        

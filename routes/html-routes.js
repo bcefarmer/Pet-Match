@@ -16,7 +16,7 @@ module.exports = function(app) {
     if(req.user) {
       res.redirect("/members");
     } else {
-      res.render('index');
+      res.render('index', {style: "style.css", style: "footer.css"} );
     }
   
   });
@@ -25,7 +25,7 @@ module.exports = function(app) {
     if(req.user) {
       res.redirect("/members");
     } else {
-      res.render("signup");
+      res.render("signup", {style: "style.css", style: "footer.css"} );
     }
   })
 
@@ -34,7 +34,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/members");
     } else {
-      res.render("index");
+      res.render("index", {style: "style.css", style: "footer.css"} )
     }
     // res.sendFile(path.join(__dirname, "../public/login.html"));
   });
@@ -47,6 +47,6 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
-    res.render("members");
+    res.render("members", {style: "style.css", style: "footer.css"} );
   });
 };

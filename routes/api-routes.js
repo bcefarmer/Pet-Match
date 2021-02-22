@@ -2,7 +2,9 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const twilio = require("twilio");
-const phoneFx = require("../calling/twilio.js");
+const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+
+
 
 const getList = (dataList) => {
   return dataList.split(';');
@@ -76,14 +78,23 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/members/:userPhone"), async function(req, res){
-    const userPhone = req.param.userPhone;
-    const loc = window.location.href;
-    phoneFx.twilioCall(userPhone, loc)
-    .catch(function(err) {
-      res.status(401).json(err);
-    });;
+  app.post("/call"), function(req, res){
+    console.log("began post")
+    let phoneNumber = req.body.phoneNumber;
+   let headersHost = 'http://' + request.headers.host;
     
-
-  }
-};
+    
+     client.calls.create({
+      url: 'https://demo.twilio.com/welcome/voice.xml',
+      to: phoneNumber,
+      from: process.env.TWILIO_NUMBER
+    })
+   .then(call => console.log(call.sid))
+        .catch((error) => {
+        response.status(500).send(error);
+        });
+    }
+  
+  };
+  
+    

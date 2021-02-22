@@ -21,12 +21,15 @@ $(document).ready(function() {
   $(".apiBtn").on("click", async function (event) {
     event.preventDefault();
   $('#breedList').html('');
+
+    let animalType = "";
+    let animalGender ="";
     
     const petListItem = $(event.target);
     console.log(petListItem);
 
-    const animalType = petListItem[0].dataset.type;
-    const animalGender = petListItem[0].dataset.gender;
+    animalType = petListItem[0].dataset.type;
+    animalGender = petListItem[0].dataset.gender;
 
     console.log(`animalType = ${animalType} & animalGender = ${animalGender}`);
    
@@ -50,8 +53,9 @@ $(document).ready(function() {
       })
   })
 
+  loadPage();
 // API ADDITIONS
-
+}) 
 const authorization = (animalType, animalGender) =>{
   
   let api_key = "q0QpMcscGQuY1S3pI9OXYHzJW8OkMOX27dgtB9OslNJYB1Dkgi";
@@ -271,26 +275,63 @@ function parseAnimals(rawData){
 
             infoBox.innerHTML =
             ` Find me <a href='${pinkNotes.Link}'>here</a> <br>
-              Phone: <button class="info" style="color: black;" data-pNumber=${pinkNotes.Phone}>${pinkNotes.Phone}</button> `
+              Phone: <button class="info callGenerate" style="color: black;" data-pNumber=${pinkNotes.Phone}>${pinkNotes.Phone}</button> `
               ;
 
-          list_div.append(infoBox)  
-        } 
-        
-        
-              
+          list_div.append(infoBox);
+
+         
       
-      }
+           }
+           $(".callGenerate").on("click", async function (event) {
+            event.preventDefault();
+          
+            let callShelterBtn = $(event.target);
+            let dataPhone = callShelterBtn[0].innerText;
+            let stringSet = String(dataPhone);
+            let phoneFilter = stringSet.replace("(","")
+                                        .replace("-","")
+                                        .replace(" ","")
+                                        .replace(")","")
+                                        .replace(" - ", "")
+                                        .replace("{","")
+                                        .replace("}","")
+                                        .replace(" -", "")
+                                        .replace("- ","")
+                                        .replace("-","");
+                                        
+
+            let messageBody = JSON.stringify({
+              phoneNumber: phoneFilter
+             })                             
+            
+            //BEGINNING AJAX CALL
+            fetch('/call',{
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                 }, 
+                 body:  messageBody,
+                 })
+              
+             .then(function(data) {
+              // The JSON sent back from the server will contain a success message
+              alert(data.message)
+          })
+          })
+        }
+          
+           
 
 
-//---------------------------------------
+          
+  
+      
+        
+  
+          
+
+           
 
 
 
-
-
-  loadPage();
-
-});
-
-                        

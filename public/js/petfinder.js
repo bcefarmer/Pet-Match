@@ -119,7 +119,8 @@ const authorization = (animalType, animalGender) =>{
                            "gender": baseObject.gender,
                            "name": baseObject.name,
                            "description": baseObject.tags,
-                           "photo": photoSelect
+                           "photo": photoSelect,
+                           "contact": baseObject.contact.phone
 
 
                           }
@@ -152,14 +153,16 @@ const authorization = (animalType, animalGender) =>{
              var pinkNotes = 
              {
              'Name': creatureArray[i].name,
-             'Breed': creatureArray[i].breed
+             'Breed': creatureArray[i].breed,
+              'Age': creatureArray[i].age,
+              'Gender': creatureArray[i].gender,
+              'Link': creatureArray[i].url,
+              'Phone':creatureArray[i].phone
              }
   
               var otherNotes =
               {
-              'Age': creatureArray[i].age,
-              'Gender': creatureArray[i].gender,
-              'Link': creatureArray[i].url
+             
              }
               
               // Outer Div

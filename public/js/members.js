@@ -29,9 +29,10 @@ $(document).ready(function() {
     const animalGender = petListItem[0].dataset.gender;
 
     console.log(`animalType = ${animalType} & animalGender = ${animalGender}`);
+   
+    let rawData = "";
 
-
-    const rawData = await authorization(animalType, animalGender);
+    rawData = await authorization(animalType, animalGender);
 
     parseAnimals(rawData);
 
@@ -74,8 +75,11 @@ const authorization = (animalType, animalGender) =>{
       }
     )
     .then(function(data){
+     // let myURL = `https://api.petfinder.com/v2/animals?types/${animalType}/species/${animalType}/gender/${animalGender}&page=3`
+     let myURL = `https://api.petfinder.com/v2/animals?types=${animalType}&species=${animalType}&gender=${animalGender}&page=7`
+     
       console.log('token', data);
-      return fetch(`https://api.petfinder.com/v2/animals?types/${animalType}/gender/${animalGender}&page=3`, {
+      return fetch(myURL, {
                     method: 'GET',
                     headers: {
                     "Authorization": `${data.token_type} ${data.access_token}`,
@@ -115,13 +119,14 @@ return getAnimal();
 function parseAnimals(rawData){
 
       let baseObject = rawData.animals;
-      console.log(`Raw data excerpt: ${JSON.stringify(baseObject[0])}`);
+      console.log(baseObject);
+     
       let creatureArray = [];
       var photoSelect = "";
 
       var animalInfo = baseObject.map( function(baseObject) {
             
-         photoSelect = "";
+            photoSelect = "";
             if(baseObject.photos[0] !== undefined){
                photoSelect = baseObject.photos[0].small;
                console.log(`----- ${photoSelect}`);
@@ -139,7 +144,8 @@ function parseAnimals(rawData){
                          "gender": baseObject.gender,
                          "name": baseObject.name,
                          "description": baseObject.tags,
-                         "photo": photoSelect
+                         "photo": photoSelect,
+                         "phone": baseObject.contact.phone
                         }
                 creatureArray.push(info);
         })
@@ -155,6 +161,7 @@ function parseAnimals(rawData){
           const myList = document.querySelector("#breedList");
           myList.style.listStyleType="none";
           myList.innerHTML="";
+          $("#breedList").html("");
 
           const rowWrapper = document.createElement("div");
           rowWrapper.setAttribute("class","row");
@@ -166,43 +173,55 @@ function parseAnimals(rawData){
           myList.append(rowWrapper);
           
           for( var i = 0; i < creatureArray.length; i++ ) {
+           
+          let listedPhone = "";
 
+          if(creatureArray[i].phone === "undefined" || creatureArray[i].phone === "undefined"){
+            listedPhone = "Not Listed"
+          }else{
+            listedPhone = creatureArray[i].phone;
+          }
+           
            var pinkNotes = 
-           {
-           'Name': creatureArray[i].name,
-           'Breed': creatureArray[i].breed,
-           'Age': creatureArray[i].age,
-            'Gender': creatureArray[i].gender,
-            'Link': creatureArray[i].url
-           }
+             {
+             'Name': creatureArray[i].name,
+             'Breed': creatureArray[i].breed,
+              'Age': creatureArray[i].age,
+              'Gender': creatureArray[i].gender,
+              'Link': creatureArray[i].url,
+              'Phone':listedPhone
+             }
+  
 
             var otherNotes =
             {
-            'Age': creatureArray[i].age,
-            'Gender': creatureArray[i].gender,
-            'Link': creatureArray[i].url
+            
            }
             
             // Outer Div
             
             var list_div = document.createElement("li");
-            list_div.style.height="200px";
+            list_div.style.height="300px";
+            
             list_div.setAttribute('data-id',creatureArray[i].id);
             
-            list_div.setAttribute("class","animalListItem col-lg-3");
+            list_div.setAttribute("class","animalListItem col-4 text-center justify-content-center");
             // list_div.innerHTML=notes;
  
 
 
             // Image Div
-            var imageDiv = document.createElement("div");
-                imageDiv.setAttribute("class","img-container");
+            var imageDiv = document.createElement("center");
+                imageDiv.setAttribute("class","img-container text-center");
                 imageDiv.style.boxSizing="border-box";
                 imageDiv.style.backgroundColor="white";
                 imageDiv.style.display="block";
-                imageDiv.style.textAlign="center";
+                imageDiv.style.textAlign="-webkit-center";
                 imageDiv.style.height="80px";
                 imageDiv.style.width="80px";
+               
+                
+                
 
         
             // Actual animal image.
@@ -211,6 +230,8 @@ function parseAnimals(rawData){
                creatureImage.style.maxHeight = "100%";
                creatureImage.style.maxWidth="100%";
                creatureImage.style.listStyleType="none";
+               
+               
 
             imageDiv.appendChild(creatureImage);
 
@@ -222,19 +243,43 @@ function parseAnimals(rawData){
             pinkBox.setAttribute("class", "box-bottom");
             pinkBox.innerHTML =
               `${pinkNotes.Name.toUpperCase()} <br>
-                ${pinkNotes.Breed}`;
+                My breed: ${pinkNotes.Breed} <br>
+                My age: ${pinkNotes.Age} <br> `
+                ;
+               
+               
+                /*
+                 Find me <a href='${pinkNotes.Link}'>here</a> <br>
+                Phone: ${pinkNotes.Age}
+                */
 
             pinkBox.style.backgroundColor="#E792B5";
             pinkBox.style.padding = "padding: 20px 0";
             pinkBox.style.textAlign = "center";
             pinkBox.style.display = "block";
           
-          
-          
-
             list_div.appendChild(pinkBox);
+          
+            var infoBox = document.createElement("div");
+            infoBox.setAttribute("class", "box");
+            infoBox.style.padding = "padding: 20px 0";
+            infoBox.style.textAlign = "center";
+            infoBox.style.display = "block";
+            infoBox.style.boxSizing = "border-box";
+            infoBox.style.backgroundColor="white";
+            infoBox.style.color="black";
+
+            infoBox.innerHTML =
+            ` Find me <a href='${pinkNotes.Link}'>here</a> <br>
+              Phone: <button class="info" style="color: black;" data-pNumber=${pinkNotes.Phone}>${pinkNotes.Phone}</button> `
+              ;
+
+          list_div.append(infoBox)  
+        } 
+        
+        
               
-      }
+      
       }
 
 

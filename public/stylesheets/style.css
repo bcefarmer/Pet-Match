@@ -23,11 +23,13 @@ html, body {
   background-color: #b4b4b4;
 }
 
+
 .notesbox {
   color: #1E3643;
   background-color: #A39872;
-  border-radius: 20px;
-  padding: 3rem;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .reviewsbox {
@@ -54,10 +56,6 @@ h6 {
   text-align: right;
 }
 
-.colorB {
-  background-color: black;
-  margin-top: 5px;
-}
 
 #photoF {
   padding-left:2rem;

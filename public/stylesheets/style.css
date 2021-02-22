@@ -4,7 +4,7 @@
 }
 
 html, body {
-  height: 100%;
+  height: 100vh;
 }
 
 .square {
@@ -14,15 +14,25 @@ html, body {
 }
 .container-fluid {
   height: 100%;
+  /* added */
+  display: flex;
+  flex-direction: column;
 }
 
 .flogin {
-  background-color: #909793;
+  background-color: #b4b4b4;
 }
 
 .notesbox {
   color: #1E3643;
-  background-color: #8A7961;
+  background-color: #A39872;
+  border-radius: 20px;
+  padding: 3rem;
+}
+
+.reviewsbox {
+  color: #1E3643;
+  background-color: #A39872;
   border-radius: 20px;
   padding: 3rem;
 }
@@ -53,6 +63,7 @@ h6 {
   padding-left:2rem;
   width: 75%;
   padding-bottom: 2rem;
+  max-width: 25em;
 }
 
 .right {
@@ -65,10 +76,121 @@ h6 {
 .right-up {
   position: absolute;
   padding-top: 2rem;
-  right: 10%;
-  width: 25%;
+  margin: 0 auto;
+  width: min(300px, 440px);
 }
 
 li {
   list-style-type: none;
 }
+
+.team {
+  background: #fff;
+  padding: 60px 0;
+}
+
+.team h2 {
+  color: #009970;
+  font-weight: bold;
+}
+
+.team p {
+  color: #1E3643;
+}
+
+.team .member {
+  position: relative;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.team .member .pic {
+  overflow: hidden;
+  width: 150px;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+}
+
+.team .member .pic img {
+  transition: ease-in-out 0.3s;
+}
+
+.team .member:hover img {
+  transform: scale(1.1);
+}
+
+.team .member h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #36343a;
+}
+
+.team .member span {
+  display: block;
+  font-size: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  font-weight: 500;
+  color: #36343a;
+}
+
+.team .member span::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #009970;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.team .member p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.team .member .social {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team .member .social a {
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #a8a5ae;
+  text-decoration:none;
+}
+
+.team .member .social a:hover {
+  background: #009970;
+}
+
+.team .member .social a + a {
+  margin-left: 8px;
+}
+
+@media (min-width: 40em) {
+  .right-up {
+    right: 10%;
+  }
+  .right h6{
+    max-width: 20rem;
+    right: 1%;
+  }
+  #photoF {
+    max-width: 100%;
+  }
+}
+

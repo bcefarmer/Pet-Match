@@ -1,7 +1,7 @@
 $('document').ready(function() {
 
 
-  $(".creatureBullet").on("click", async function (event) {
+  $(".apiBtn").on("click", async function (event) {
       event.preventDefault();
       
       const petListItem = $(event.target).closest("li");

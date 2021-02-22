@@ -1,6 +1,8 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const twilio = require("twilio");
+const phoneFx = require("../calling/twilio.js");
 
 const getList = (dataList) => {
   return dataList.split(';');
@@ -73,4 +75,15 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/members/:userPhone"), async function(req, res){
+    const userPhone = req.param.userPhone;
+    const loc = window.location.href;
+    phoneFx.twilioCall(userPhone, loc)
+    .catch(function(err) {
+      res.status(401).json(err);
+    });;
+    
+
+  }
 };

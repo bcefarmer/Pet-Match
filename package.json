@@ -20,6 +20,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "sequelize": "^5.22.3",
+    "twilio": "^3.56.0",
     "yelp-fusion": "^3.0.0"
   },
   "repository": {

@@ -170,7 +170,10 @@ function parseAnimals(rawData){
            var pinkNotes = 
            {
            'Name': creatureArray[i].name,
-           'Breed': creatureArray[i].breed
+           'Breed': creatureArray[i].breed,
+           'Age': creatureArray[i].age,
+            'Gender': creatureArray[i].gender,
+            'Link': creatureArray[i].url
            }
 
             var otherNotes =

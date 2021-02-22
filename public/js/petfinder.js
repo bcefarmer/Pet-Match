@@ -120,6 +120,8 @@ const authorization = (animalType, animalGender) =>{
                            "name": baseObject.name,
                            "description": baseObject.tags,
                            "photo": photoSelect
+
+
                           }
                   creatureArray.push(info);
           })

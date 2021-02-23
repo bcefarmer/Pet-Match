@@ -8,13 +8,13 @@ html, body {
 }
 
 .square {
+  margin: 4%;
   background-color: #2C2C2F;
   padding: 3rem 3rem 2.5rem 3rem;
   border-radius: 20px;
 }
 .container-fluid {
   height: 100%;
-  /* added */
   display: flex;
   flex-direction: column;
 }
@@ -22,7 +22,6 @@ html, body {
 .flogin {
   background-color: #b4b4b4;
 }
-
 
 .notesbox {
   color: #1E3643;
@@ -37,16 +36,6 @@ html, body {
   background-color: #A39872;
   border-radius: 20px;
   padding: 3rem;
-}
-
-#btn1 {
-  font-size: 25px;
-  padding: 5px 60px 5px 60px;
-  background-color: black;
-  border: black;
-  display: block;
-  margin-left: auto;
-  margin-top: 20px;
 }
 
 h6 {
@@ -69,13 +58,6 @@ h6 {
   top: 75%;
   right: 10%;
   width: 50%;
-}
-
-.right-up {
-  position: absolute;
-  padding-top: 2rem;
-  margin: 0 auto;
-  width: min(300px, 440px);
 }
 
 li {
@@ -180,12 +162,8 @@ li {
 }
 
 @media (min-width: 40em) {
-  .right-up {
-    right: 10%;
-  }
-  .right h6{
-    max-width: 20rem;
-    right: 1%;
+  .square {
+    max-width: 400px;
   }
   #photoF {
     max-width: 100%;

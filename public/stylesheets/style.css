@@ -1,6 +1,6 @@
 * {
   font-family: 'Source Serif Pro', serif;
-  color: #353532;
+  color: #eaf1f1;
 }
 
 html, body {
@@ -80,6 +80,11 @@ li {
   overflow:hidden;
   box-shadow:  15px 15px 27px #454f46, -15px -15px 27px #454f46;
   margin: 30px;
+}
+
+.apiBtn{
+  background-color: #fff;
+  border-color: #fff;
 }
 
 .team {

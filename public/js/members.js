@@ -258,7 +258,7 @@ function parseAnimals(rawData){
                 Phone: ${pinkNotes.Age}
                 */
 
-            pinkBox.style.backgroundColor="#E792B5";
+            pinkBox.style.backgroundColor="#009970";
             pinkBox.style.padding = "padding: 20px 0";
             pinkBox.style.textAlign = "center";
             pinkBox.style.display = "block";

@@ -34,8 +34,19 @@ Team Members Page
 
 ## Library, Frameworks & Tools
 * Framework- Bootstrap
-* Javascript
-* Library: 
+* Express
+* handlebars
+* Dotenv
+* Mysql2
+* Sequelize
+* Bcryptjs
+* Passport
+* JavaScript
+* CSS
+* Git 
+* Third Party API
+* Twilio 
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

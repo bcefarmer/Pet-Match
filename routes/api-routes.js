@@ -1,6 +1,10 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const twilio = require("twilio");
+const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+
+
 
 const getList = (dataList) => {
   return dataList.split(';');
@@ -73,4 +77,26 @@ module.exports = function(app) {
       });
     }
   });
-};
+
+  app.post("/api/call"), function(req, res){
+    console.log("began post")
+    let phoneNumber = req.body.phoneNumber;
+    let formatNumber = `+1${phoneNumber}`
+    let headersHost = 'http://' + request.headers.host;
+    
+    
+     client.calls.create({
+     // url: https://api.twilio.com,
+     url: headersHost,
+      to: formatNumber,
+      from: process.env.TWILIO_NUMBER
+    })
+   .then(call => console.log(call.sid))
+        .catch((error) => {
+        response.status(500).send(error);
+        });
+    }
+  
+  };
+  
+    

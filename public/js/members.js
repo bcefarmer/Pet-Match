@@ -275,7 +275,7 @@ function parseAnimals(rawData){
 
             infoBox.innerHTML =
             ` Find me <a href='${pinkNotes.Link}'>here</a> <br>
-              Phone: <button class="info callGenerate" style="color: black;" data-pNumber=${pinkNotes.Phone}>${pinkNotes.Phone}</button> `
+              Phone: <button class="info callGenerate" style="color: black; border: none; background-color: none;" data-pNumber=${pinkNotes.Phone}>${pinkNotes.Phone}</button> `
               ;
 
           list_div.append(infoBox);
@@ -301,25 +301,33 @@ function parseAnimals(rawData){
                                         .replace("-","");
                                         
 
-            let messageBody = JSON.stringify({
-              phoneNumber: phoneFilter
-             })                             
-            
-            //BEGINNING AJAX CALL
-            fetch('/call',{
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                 }, 
-                 body:  messageBody,
-                 })
-              
-             .then(function(data) {
+            let messageBody = `{phoneNumber: ${phoneFilter}}`;
+            let preData = {
+              method: 'POST',
+              /*headers: {
+                'Content-Type': 'application/json'
+               }, */
+               body:  messageBody,
+               };
+               let sentData=JSON.stringify(preData);
+
+             let rawResponse = await $.post( "/api/call", sentData)
+              .then( 
+                function(data){
+                  if(data.ok){
+                    console.log(data.json());
+                    return data.json();
+                }
               // The JSON sent back from the server will contain a success message
-              alert(data.message)
-          })
-          })
-        }
+                
+           }).catch(function(error) {                        // catch
+            console.log('Request failed', error);
+            alert("This api call failed on the post request.  Please try again.")
+         });
+         const content = await rawResponse;
+         console.log(content);
+          }) }
+        
           
            
 

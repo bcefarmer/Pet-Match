@@ -78,15 +78,17 @@ module.exports = function(app) {
     }
   });
 
-  app.post("/call"), function(req, res){
+  app.post("/api/call"), function(req, res){
     console.log("began post")
     let phoneNumber = req.body.phoneNumber;
-   let headersHost = 'http://' + request.headers.host;
+    let formatNumber = `+1${phoneNumber}`
+    let headersHost = 'http://' + request.headers.host;
     
     
      client.calls.create({
-      url: 'https://demo.twilio.com/welcome/voice.xml',
-      to: phoneNumber,
+     // url: https://api.twilio.com,
+     url: headersHost,
+      to: formatNumber,
       from: process.env.TWILIO_NUMBER
     })
    .then(call => console.log(call.sid))

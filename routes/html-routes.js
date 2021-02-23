@@ -16,7 +16,7 @@ module.exports = function(app) {
     if(req.user) {
       res.redirect("/members");
     } else {
-      res.render('index', {style: "style.css", style: "footer.css"} );
+      res.render('index');
     }
   
   });
@@ -25,7 +25,7 @@ module.exports = function(app) {
     if(req.user) {
       res.redirect("/members");
     } else {
-      res.render("signup", {style: "style.css", style: "footer.css"} );
+      res.render("signup");
     }
   })
 
@@ -34,7 +34,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/members");
     } else {
-      res.render("index", {style: "style.css", style: "footer.css"} )
+      res.render("index");
     }
     // res.sendFile(path.join(__dirname, "../public/login.html"));
   });

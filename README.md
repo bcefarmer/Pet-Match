@@ -2,7 +2,7 @@
 
 Anyone looking to adopt a pet in their area this is the website for you. You can create a secure login from which you can search for dogs, cats, a parrot, or even exotic animals like monkeys or snakes. Which type of breed you would like. How big of pet you are looking for and more. The application will tell you where these pets are located and provides contact information so you can call directly or click the link to the pet's profile for further details about this specific animal.
 
-## User
+## User Story
 
 I AM looking to adopt animal.
 I AM able to create a personal account with a secure password. 

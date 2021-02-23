@@ -1,6 +1,6 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #F3F3F2;
+  font-family: 'Source Serif Pro', serif;
+  color: #dadad8;
 }
 
 html, body {
@@ -29,7 +29,7 @@ html, body {
 
 .notesbox {
   color: #1E3643;
-  background-color: #A39872;
+  background-color: #525d54;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
   border-radius: 10px;
@@ -179,6 +179,7 @@ li {
   color:#f0f9ff;
   background-color:#282d32;
   flex-shrink: 0;
+  
 }
 
 .footer h3 {

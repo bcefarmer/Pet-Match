@@ -1,6 +1,6 @@
 * {
   font-family: 'Source Serif Pro', serif;
-  color: #dadad8;
+  color: #eaf1f1;
 }
 
 html, body {
@@ -66,6 +66,25 @@ h6 {
 
 li {
   list-style-type: none;
+}
+
+.card-property {
+  height:18em;
+  width:14em;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:  15px 15px 27px #454f46, -15px -15px 27px #454f46;
+  margin: 30px;
+}
+
+.apiBtn{
+  background-color: #fff;
+  border-color: #fff;
 }
 
 .team {

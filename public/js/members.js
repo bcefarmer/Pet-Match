@@ -211,6 +211,7 @@ function parseAnimals(rawData){
             
             list_div.setAttribute("class","animalListItem col-4 text-center justify-content-center");
             // list_div.innerHTML=notes;
+            list_div.className = "card-property";
  
 
 
@@ -257,7 +258,7 @@ function parseAnimals(rawData){
                 Phone: ${pinkNotes.Age}
                 */
 
-            pinkBox.style.backgroundColor="#E792B5";
+            pinkBox.style.backgroundColor="#009970";
             pinkBox.style.padding = "padding: 20px 0";
             pinkBox.style.textAlign = "center";
             pinkBox.style.display = "block";

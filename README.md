@@ -4,14 +4,14 @@ Anyone looking to adopt a pet in their area this is the website for you. You can
 
 ## User Story
 
-I AM looking to adopt animal.
-I AM able to create a personal account with a secure password. 
+I AM looking to adopt an animal.
+I CAN create a personal account with a secure password. 
 WHEN I filter for a certain animal, 
 I AM presented with results from PetFinder.com.
-WE ARE presented with multiple pets that meet our criteria. 
-WHEN making a decision, 
-I AM able to call the shelter directly from the page to inquire about the pet. 
-I AM able to jot down information I would like to keep in mind.
+I AM presented with multiple pets that meet my criteria.
+WHEN deciding, 
+I CAN call the shelter directly from the page to inquire about the pet.
+I CAN jot down information I would like to keep in mind.
  
 ## Installation
 If you are installing to your local machine please remember to add a .env file 
@@ -46,6 +46,13 @@ Team Members Page
 * Git 
 * Third Party API
 * Twilio 
+
+## Future Development
+
+Moving forward we would like to add to the application by including functionality allowing us to search the area and get a response with available animals in our area.  
+Adding an exotic animal's search option to the application would really give it a unique touch.
+Adding the ability for a user to delete their notes.
+Working through the technical difficulties we encountered with Twilio
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

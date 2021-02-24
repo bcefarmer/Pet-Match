@@ -2,7 +2,10 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const twilio = require("twilio");
+const Api = require("twilio/lib/rest/Api");
+const { AuthorizedConnectAppContext } = require("twilio/lib/rest/api/v2010/account/authorizedConnectApp");
 const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+
 
 
 
@@ -10,10 +13,14 @@ const getList = (dataList) => {
   return dataList.split(';');
 }
 
+
+
 const setList = (newData, dataList) => {
   dataList.push(newData)
   return dataList.join(';')
 }
+
+
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -22,6 +29,8 @@ module.exports = function(app) {
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
   });
+
+
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
@@ -78,25 +87,35 @@ module.exports = function(app) {
     }
   });
 
-  app.post("/api/call"), function(req, res){
-    console.log("began post")
+  app.post("/api/call", async function(req, res){
+    console.log("beginning post");
     let phoneNumber = req.body.phoneNumber;
-    let formatNumber = `+1${phoneNumber}`
-    let headersHost = 'http://' + request.headers.host;
+    let formatNumber = "+1" + phoneNumber;
+     
     
-    
-     client.calls.create({
-     // url: https://api.twilio.com,
-     url: headersHost,
+     const callGenerate = await
+      client.calls.create({
+     
+     twiml:   `<Response>
+        <Start>
+            <Stream url="wss://mystream.ngrok.io/audiostream" />
+        </Start>
+     </Response>`,
       to: formatNumber,
       from: process.env.TWILIO_NUMBER
     })
-   .then(call => console.log(call.sid))
+   .then(call => {
+    console.log(call.sid);
+     console.log(formatNumber);
+  }
+    )
         .catch((error) => {
         response.status(500).send(error);
         });
+
+      callGenerate;
     }
   
-  };
+  )};
   
     

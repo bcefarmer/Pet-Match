@@ -301,32 +301,43 @@ function parseAnimals(rawData){
                                         .replace("-","");
                                         
 
-            let messageBody = `{phoneNumber: ${phoneFilter}}`;
-            let preData = {
-              method: 'POST',
-              /*headers: {
-                'Content-Type': 'application/json'
-               }, */
-               body:  messageBody,
-               };
-               let sentData=JSON.stringify(preData);
+            let messageBody = {phoneNumber: phoneFilter};
+           
+             ; 
+            
+              
+             
+               
 
-             let rawResponse = await $.post( "/api/call", sentData)
-              .then( 
-                function(data){
-                  if(data.ok){
-                    console.log(data.json());
-                    return data.json();
-                }
-              // The JSON sent back from the server will contain a success message
-                
-           }).catch(function(error) {                        // catch
-            console.log('Request failed', error);
-            alert("This api call failed on the post request.  Please try again.")
-         });
-         const content = await rawResponse;
-         console.log(content);
-          }) }
+         
+              
+               const reachOut = await $.ajax(
+              {
+              url: "/api/call",
+              contentType: "application/JSON",
+              method: 'POST',
+              datatype: 'json',
+              data: JSON.stringify(messageBody),
+              error: function (err) {
+                console.log("AJAX error in request: " + JSON.stringify(err, null, 2));
+            }
+        }).always(function(jqXHR, textStatus) {
+            if (textStatus != "success") {
+                alert("Error: " + jqXHR.statusText);
+            }
+        });
+              
+            
+               
+
+          })}
+
+             
+          
+          
+             
+        
+          
         
           
            
